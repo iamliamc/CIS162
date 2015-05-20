@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.params=pName
+comment0.target=CashRegister(java.lang.String)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ CashRegister\r\n
+comment1.params=currentAmountDue\ totalDailySales\ storeName
+comment1.target=CashRegister(double,\ double,\ java.lang.String)
+comment10.params=args
+comment10.target=void\ main(java.lang.String[])
+comment2.params=
+comment2.target=double\ getTotalSales()
+comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \r\n
+comment3.params=
+comment3.target=double\ getAmountDue()
+comment4.params=price
+comment4.target=void\ scanPrice(double)
+comment5.params=
+comment5.target=void\ completeSale()
+comment6.params=
+comment6.target=void\ cancelSale()
+comment7.params=amount
+comment7.target=void\ makePayment(double)
+comment8.params=
+comment8.target=void\ showSalesReport()
+comment9.params=
+comment9.target=void\ clearAllSales()
+numComments=11

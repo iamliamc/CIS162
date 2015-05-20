@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Login()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Login\r\n
+comment1.params=pfirstName\ plastName
+comment1.target=Login(java.lang.String,\ java.lang.String)
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \r\n
+numComments=3

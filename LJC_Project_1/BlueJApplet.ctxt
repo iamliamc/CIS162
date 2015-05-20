@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ init()
+comment0.text=\r\n\ Called\ by\ the\ browser\ or\ applet\ viewer\ to\ inform\ this\ JApplet\ that\ it\r\n\ has\ been\ loaded\ into\ the\ system.\ It\ is\ always\ called\ before\ the\ first\ \r\n\ time\ that\ the\ start\ method\ is\ called.\r\n
+comment1.params=
+comment1.target=void\ start()
+comment1.text=\r\n\ Called\ by\ the\ browser\ or\ applet\ viewer\ to\ inform\ this\ JApplet\ that\ it\ \r\n\ should\ start\ its\ execution.\ It\ is\ called\ after\ the\ init\ method\ and\ \r\n\ each\ time\ the\ JApplet\ is\ revisited\ in\ a\ Web\ page.\ \r\n
+comment2.params=
+comment2.target=void\ stop()
+comment2.text=\ \r\n\ Called\ by\ the\ browser\ or\ applet\ viewer\ to\ inform\ this\ JApplet\ that\r\n\ it\ should\ stop\ its\ execution.\ It\ is\ called\ when\ the\ Web\ page\ that\r\n\ contains\ this\ JApplet\ has\ been\ replaced\ by\ another\ page,\ and\ also\r\n\ just\ before\ the\ JApplet\ is\ to\ be\ destroyed.\ \r\n
+comment3.params=g
+comment3.target=void\ paint(java.awt.Graphics)
+comment3.text=\r\n\ Paint\ method\ for\ applet.\r\n\ \r\n\ @param\ \ g\ \ \ the\ Graphics\ object\ for\ this\ applet\r\n\ \r\n\ Begin\ draw\ code\ here.\ \r\n
+comment4.params=
+comment4.target=void\ destroy()
+comment4.text=\r\n\ Called\ by\ the\ browser\ or\ applet\ viewer\ to\ inform\ this\ JApplet\ that\ it\r\n\ is\ being\ reclaimed\ and\ that\ it\ should\ destroy\ any\ resources\ that\ it\r\n\ has\ allocated.\ The\ stop\ method\ will\ always\ be\ called\ before\ destroy.\ \r\n
+numComments=5

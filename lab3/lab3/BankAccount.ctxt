@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.params=
+comment0.target=BankAccount()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ BankAccount\r\n
+comment1.params=input_name\ input_acct\ input_bal
+comment1.target=BankAccount(java.lang.String,\ int,\ double)
+comment10.params=
+comment10.target=java.lang.String\ toString()
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \r\n
+comment3.params=
+comment3.target=int\ getAcc()
+comment4.params=
+comment4.target=double\ getbalance()
+comment5.params=pname
+comment5.target=void\ setName(java.lang.String)
+comment6.params=pacct
+comment6.target=void\ setAcc(int)
+comment7.params=pbal
+comment7.target=void\ setBal(double)
+comment8.params=amount
+comment8.target=void\ makeDeposit(double)
+comment9.params=amount
+comment9.target=void\ makeWithdrawal(double)
+numComments=11
