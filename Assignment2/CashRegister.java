@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class CashRegister here. Assignment 2, implemenet a simple cash register program.
+ * Assignment 2, implemenet a simple cash register program.
  * 
  * @author Liam Considine 
- * @version (a version number or a date)
+ * 5/20/2015 
  */
 
 import java.text.NumberFormat;
@@ -65,7 +65,6 @@ public class CashRegister
         // If not less than or equal to 0.0 add to current amount and daily sales show current cart price
         else {
             currentAmountDue = currentAmountDue + price;
-            totalDailySales = totalDailySales + currentAmountDue;
             System.out.println("The price of that item is: " + fmt.format(price) + " current cart cost: " + fmt.format(currentAmountDue));
         }
     }
@@ -77,13 +76,13 @@ public class CashRegister
         double tax = salesTax * currentAmountDue;
         System.out.println("Sales Tax: " + fmt.format(tax));
         currentAmountDue = currentAmountDue + tax;
+        totalDailySales = totalDailySales + currentAmountDue;
         System.out.println("Total amount due: " + fmt.format(currentAmountDue));
     }
     
     public void cancelSale()
     {
         // Cancel out current cart/order show operator amount due reset
-        totalDailySales = totalDailySales - currentAmountDue;
         currentAmountDue = 0.0;
         System.out.println("Sale canceled, amount due set to: " + fmt.format(currentAmountDue));
     }    
@@ -97,31 +96,33 @@ public class CashRegister
         }
         // If amount paid is less than current due show remaining charges
         else if (amount < currentAmountDue) {
-            double due = currentAmountDue - amount;
+            currentAmountDue = currentAmountDue - amount;
             System.out.println("Payment: " + fmt.format(amount));
-            System.out.println("Customer still owes: " + fmt.format(due));
+            System.out.println("Customer still owes: " + fmt.format(currentAmountDue));
         }
         // If amount paid is exact
         else if (amount == currentAmountDue){
             System.out.println("Payment: " + fmt.format(amount));
             System.out.println("Great work! Thank you. Have a nice day!");
+            currentAmountDue = 0.0;
         }
         // If the payment is greater than the cost
         else if (amount > currentAmountDue) {
             double change = amount - currentAmountDue;
+            currentAmountDue = 0.0;
             System.out.println("Payment: " + fmt.format(amount));
             System.out.println("Change due to customer: " + fmt.format(change));
         }
-        // Ensures payment is 
-        currentAmountDue = amount - currentAmountDue;
-        currentAmountDue = 0.0;
+        // Ensures payment is caught in if statements.
+        // System.out.println("WARNING Code got past all if blocks!!!!!!!");
+        // currentAmountDue = amount - currentAmountDue;
+        // currentAmountDue = 0.0;
     }
 
     public void showSalesReport()
     {
         // put your code here
         System.out.println(storeName + "'s Total Daily Sales = " + fmt.format(totalDailySales));
-        currentAmountDue = 0.0;
     }
     
     public void clearAllSales()
@@ -131,6 +132,7 @@ public class CashRegister
         String answer = sc.next();
         if (answer.equals("y")){
             totalDailySales = 0.0;
+            currentAmountDue = 0.0;
             System.out.println("All sales cleared");
         }
         else if (answer.equals("n")) {
@@ -143,22 +145,24 @@ public class CashRegister
         CashRegister uMart = new CashRegister("uMart");
         uMart.scanPrice(1.50);
         uMart.scanPrice(3.00);
+        uMart.scanPrice(4.50);
         uMart.completeSale();
-        uMart.makePayment(5.00);
-        uMart.showSalesReport();
-        uMart.clearAllSales();
+        uMart.makePayment(9.54);
         uMart.scanPrice(1.50);
         uMart.scanPrice(3.00);
+        uMart.scanPrice(4.50);
         uMart.completeSale();
-        uMart.makePayment(1.50);
-        uMart.scanPrice(0.0);
-        uMart.scanPrice(-1.0);
-        uMart.scanPrice(100.0);
-        uMart.completeSale();
-        //uMart.makePayment(106.0);
-        uMart.makePayment(-106.0);
-
-        
+        uMart.makePayment(9.54);
+        uMart.showSalesReport();
+        //uMart.clearAllSales();
+//         uMart.showSalesReport();
+//         uMart.scanPrice(1.50);
+//         uMart.scanPrice(3.00);
+//         uMart.scanPrice(5.00);
+//         uMart.completeSale();
+//         uMart.makePayment(1.50);
+//         uMart.makePayment(8.00);
+      
         
     }
 }
