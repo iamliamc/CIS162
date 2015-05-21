@@ -17,9 +17,11 @@ public class CashRegister
     String storeName;
     final double salesTax = 0.06;
     NumberFormat fmt = NumberFormat.getCurrencyInstance();
+    
     /**
      * Constructor for objects of class CashRegister
      */
+    
     public CashRegister(String pName)
     {
         currentAmountDue = 0.0;
@@ -28,7 +30,11 @@ public class CashRegister
         NumberFormat fmt = NumberFormat.getCurrencyInstance();
         System.out.println("Welcome to " + storeName);
     }
-
+    
+    /**
+     * Constructor for objects of class CashRegister with all parameters defined
+     */
+    
     public CashRegister(double currentAmountDue, double totalDailySales, String storeName)
     {
         this.currentAmountDue = currentAmountDue;
@@ -37,13 +43,7 @@ public class CashRegister
         NumberFormat fmt = NumberFormat.getCurrencyInstance();
         System.out.println("Welcome to " + storeName);
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
+    
     public double getTotalSales()
     {
         // Total Sales Getter
@@ -60,7 +60,7 @@ public class CashRegister
     {
         // Scan Item if less than or equal to 0.0 scan error
         if (price <= 0.0) {
-            System.out.println("There has been a scanner error Scan returned: " + price);
+            System.out.println("There has been a scanner error... Scan returned: " + price);
         }
         // If not less than or equal to 0.0 add to current amount and daily sales show current cart price
         else {
@@ -90,8 +90,8 @@ public class CashRegister
     public void makePayment(double amount)
     {
         // If payment is less than 0 payment can't be negative
-        if (amount < 0){
-            System.out.println("Payment cannot be negative.");
+        if (amount <= 0){
+            System.out.println("Payment cannot be Zero or negative.");
             System.out.println("Payment due: " + currentAmountDue);
         }
         // If amount paid is less than current due show remaining charges
@@ -113,10 +113,6 @@ public class CashRegister
             System.out.println("Payment: " + fmt.format(amount));
             System.out.println("Change due to customer: " + fmt.format(change));
         }
-        // Ensures payment is caught in if statements.
-        // System.out.println("WARNING Code got past all if blocks!!!!!!!");
-        // currentAmountDue = amount - currentAmountDue;
-        // currentAmountDue = 0.0;
     }
 
     public void showSalesReport()
@@ -135,7 +131,7 @@ public class CashRegister
             currentAmountDue = 0.0;
             System.out.println("All sales cleared");
         }
-        else if (answer.equals("n")) {
+        else{
             System.out.println("No changes to Daily Sales made");
         }
     }
@@ -143,25 +139,47 @@ public class CashRegister
     public static void main(String [] args)
     {
         CashRegister uMart = new CashRegister("uMart");
+        //Test scanPrice, completeSale, getAmountDue, getTotalSales, makePayment(under), makePayment(exact case), clearAllSales(y), showSalesReport
         uMart.scanPrice(1.50);
         uMart.scanPrice(3.00);
         uMart.scanPrice(4.50);
         uMart.completeSale();
-        uMart.makePayment(9.54);
-        uMart.scanPrice(1.50);
-        uMart.scanPrice(3.00);
-        uMart.scanPrice(4.50);
-        uMart.completeSale();
-        uMart.makePayment(9.54);
+        System.out.println("Test getAmountDue: " + uMart.getAmountDue());
+        uMart.makePayment(9.00);
+        uMart.makePayment(0.54);
+        System.out.println("Test getTotalSales: " + uMart.getTotalSales());
+        uMart.clearAllSales();
         uMart.showSalesReport();
-        //uMart.clearAllSales();
-//         uMart.showSalesReport();
-//         uMart.scanPrice(1.50);
-//         uMart.scanPrice(3.00);
-//         uMart.scanPrice(5.00);
-//         uMart.completeSale();
-//         uMart.makePayment(1.50);
-//         uMart.makePayment(8.00);
+        
+        //Test scanPrice, completeSale, makePayment(negative), makePayment(zero), makePayment(overpay), clearAllSales(n)
+        uMart.scanPrice(10.50);
+        uMart.scanPrice(3.00);
+        uMart.scanPrice(4.50);
+        uMart.completeSale();
+        uMart.makePayment(0.00);
+        uMart.makePayment(-1.00);
+        uMart.makePayment(9.54);
+        uMart.makePayment(10.00);
+        uMart.clearAllSales();
+        
+        //Test second instance of CashRegister class, scanPrice(zero), scanPrice(negative)
+        CashRegister quickieMart = new CashRegister("quickieMart");
+        quickieMart.scanPrice(1.50);
+        quickieMart.scanPrice(36.00);
+        quickieMart.cancelSale();
+        quickieMart.scanPrice(50.00);
+        quickieMart.scanPrice(-1.00);
+        quickieMart.scanPrice(0.00);
+        quickieMart.completeSale();
+        quickieMart.makePayment(100.0);
+        
+        
+        
+        
+        
+
+
+        
       
         
     }
