@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Pig()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Pig\r\n
+comment1.params=
+comment1.target=int\ getRoundScore()
+comment10.params=
+comment10.target=boolean\ playerWon()
+comment11.params=
+comment11.target=boolean\ computerWon()
+comment2.params=
+comment2.target=int\ getPlayerScore()
+comment3.params=
+comment3.target=int\ getComputerScore()
+comment4.params=
+comment4.target=void\ rollDice()
+comment5.params=
+comment5.target=void\ playerRolls()
+comment6.params=
+comment6.target=void\ playerHolds()
+comment7.params=
+comment7.target=void\ computerTurn()
+comment8.params=
+comment8.target=void\ restart()
+comment9.params=num
+comment9.target=GVdie\ getDie(int)
+numComments=12
