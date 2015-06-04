@@ -52,6 +52,7 @@ public class Pig
         System.out.println("die1: " + d1.getValue() + " die2: " + d2.getValue());
         if (d1.getValue() == 1 || d2.getValue() == 1){
             currentRoundScore = 0;
+            
         }
         else {
             currentRoundScore += (d1.getValue() + d2.getValue());
@@ -67,12 +68,12 @@ public class Pig
         {
             System.out.println("Player wins!!!");
         }
-        else if (d1.getValue() == 0 && d2.getValue() == 0){
+        else if (d1.getValue() == 1 && d2.getValue() == 1){
             playerScore = 0;
             playerTurn = false;
             System.out.println("Terrible roll! Player Score set to 0!");
         }
-        else if (d1.getValue() == 0 || d2.getValue() == 0){
+        else if (d1.getValue() == 1 || d2.getValue() == 1){
             System.out.println("Bad roll - turns over! Player points = " + playerScore);
             currentRoundScore = 0;
             playerTurn = false;
