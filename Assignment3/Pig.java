@@ -50,7 +50,7 @@ public class Pig
         d1.roll();
         d2.roll();
         System.out.println("die1: " + d1.getValue() + " die2: " + d2.getValue());
-        if (d1.getValue() == 0 || d2.getValue() == 0){
+        if (d1.getValue() == 1 || d2.getValue() == 1){
             currentRoundScore = 0;
         }
         else {
@@ -69,10 +69,13 @@ public class Pig
         }
         else if (d1.getValue() == 0 && d2.getValue() == 0){
             playerScore = 0;
+            playerTurn = false;
             System.out.println("Terrible roll! Player Score set to 0!");
         }
         else if (d1.getValue() == 0 || d2.getValue() == 0){
             System.out.println("Bad roll - turns over! Player points = " + playerScore);
+            currentRoundScore = 0;
+            playerTurn = false;
         }
 
     }
@@ -154,6 +157,37 @@ public class Pig
         }
         else {
             return false;
+        }
+    }
+
+    public void playerTurn ()
+    {
+        while (currentRoundScore < 19)
+        {
+            rollDice();
+            if (d1.getValue() == 1 && d2.getValue() == 1){
+                playerScore = 0;
+                currentRoundScore = 0;
+                playerTurn = false;
+                break;
+            }
+            else if (d1.getValue() == 1 || d2.getValue() == 1){
+                currentRoundScore = 0;
+                playerTurn = false;
+                break;
+            }
+        }
+        playerScore += currentRoundScore;
+        currentRoundScore = 0;
+        System.out.println("Player's current score = " + playerScore);
+    }
+
+    public void autoGame ()
+    {
+        while ((playerScore < 100) && (computerScore < 100))
+        {
+            playerTurn();
+            computerTurn();
         }
     }
 

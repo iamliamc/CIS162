@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
+comment0.text=\r\n\ \ \ \ Create\ all\ elements\ and\ display\ within\ the\ GUI\r\n
+comment1.params=
+comment1.target=GUI()
+comment2.params=e
+comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment2.text=\r\n\ \ \ \ Respond\ to\ the\ user\ action\r\n\r\n\ \ \ \ @param\ e\ -\ the\ JComponent\ just\ selected\r\n
+comment3.params=
+comment3.target=void\ playOneGame()
+comment3.text=\r\n\ Play\ one\ game\r\n
+numComments=4
