@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Pig()
-comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Pig\r\n
+comment0.text=\r\n\ Constructor\ for\ object\ of\ class\ Pig\ only\ one\ instantiates\ size\ of\ dice,\ and\ values\ of\ scores,\ and\ player\ starts\ first\r\n
 comment1.params=
 comment1.target=int\ getRoundScore()
 comment10.params=
