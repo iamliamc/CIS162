@@ -14,6 +14,7 @@ public class Pig
     private int playerScore;
     private int currentRoundScore;
     final int WINNING_SCORE = 100;
+    private boolean playerTurn;
 
     /**
      * Constructor for objects of class Pig
@@ -26,6 +27,7 @@ public class Pig
         computerScore = 0;
         playerScore = 0;
         currentRoundScore = 0;
+        playerTurn = true;
     }
     //Returns currentRoundScore
     public int getRoundScore()
@@ -80,6 +82,7 @@ public class Pig
         playerScore += currentRoundScore;
         currentRoundScore = 0;
         System.out.println("Player's current score = " + playerScore);
+        playerTurn  = false;
     }
 
     public void computerTurn()
@@ -90,10 +93,12 @@ public class Pig
             if (d1.getValue() == 1 && d2.getValue() == 1){
                 computerScore = 0;
                 currentRoundScore = 0;
+                playerTurn = true;
                 break;
             }
             else if (d1.getValue() == 1 || d2.getValue() == 1){
                 currentRoundScore = 0;
+                playerTurn = true;
                 break;
             }
         }
@@ -107,6 +112,7 @@ public class Pig
         computerScore = 0;
         playerScore = 0;
         currentRoundScore = 0;
+        playerTurn = true;
     }
 
     public GVdie getDie(int num)
@@ -140,4 +146,15 @@ public class Pig
             return false;
         }
     }
+
+    public boolean isPlayerTurn()
+    {
+        if (playerTurn == true){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 }
