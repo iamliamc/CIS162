@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Ipod()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Ipod\r\n
+comment1.params=
+comment1.target=int\ countSongs()
+comment1.text=\r\n\ countSongs\r\n\ @return\ the\ number\ of\ elements\ in\ the\ ArrayList\r\n
+comment2.params=newS
+comment2.target=boolean\ addSong(Song)
+comment2.text=\r\n\ addSong\r\n\ @param\ -\ Song\r\n\ This\ method\ returns\ a\ boolean\ variable\ indicating\:\r\n\ true\ if\ the\ Song\ was\ added\ to\ the\ ArrayList\r\n\ false\ if\ the\ Song\ was\ not\ added\ to\ the\ ArrayList.\r\n
+comment3.params=pTitle
+comment3.target=Song\ searchTitle(java.lang.String)
+comment3.text=\r\n\ searchTitle\r\n\ @param\ -\ String\ pTitle\r\n\ @return\ Song\ that\ contains\ the\ title\ entered\ as\ \r\n\ parameter\r\n
+comment4.params=pArtist
+comment4.target=java.util.ArrayList\ searchArtist(java.lang.String)
+comment4.text=\r\n\ searchArtist\r\n\ @param\ -\ String\ pArtist\r\n\ @return\ ArrayList\ <Song>\ that\ contains\ the\ songs\ \r\n\ for\ the\ artist\ entered\ as\ parameter\r\n
+comment5.params=
+comment5.target=void\ display()
+comment5.text=\r\n\ display\r\n\ prints\ the\ songs\ in\ the\ ipod\ one\ song\ per\ line\r\n
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment6.text=\r\n\ toString\r\n\ @return\ String\ -\ Returns\ the\ Strings\ of\ the\ songs\r\n\ a\ line\ per\ song.\ \ \r\n
+numComments=7

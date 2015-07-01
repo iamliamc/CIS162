@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=title\ artist\ genre
+comment0.target=Song(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Song\r\n
+comment1.params=
+comment1.target=java.lang.String\ getTitle()
+comment1.text=\r\n\ getTitle\r\n\ @return\ String\ \r\n
+comment2.params=
+comment2.target=java.lang.String\ getArtist()
+comment2.text=\r\n\ getArtist\r\n\ @return\ String\ \r\n
+comment3.params=
+comment3.target=java.lang.String\ getGenre()
+comment3.text=\r\n\ getGenre\r\n\ @return\ String\ \r\n
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment4.text=\r\n\ getTitle\r\n\ @return\ String\ \r\n
+comment5.params=s
+comment5.target=boolean\ equals(Song)
+comment5.text=\r\n\ equals\r\n\ @return\ boolean\ -\ true\ if\ this\ song\ is\ equal\r\n\ to\ the\ song\ entered\ as\ an\ input\ parameter\r\n\ @param\ -\ Song\ \r\n
+numComments=6

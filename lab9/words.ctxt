@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=
+comment0.target=words()
+comment1.params=str
+comment1.target=void\ addWord(java.lang.String)
+comment2.params=option
+comment2.target=void\ display(int)
+comment3.params=num
+comment3.target=void\ addWords(int)
+comment4.params=str
+comment4.target=int\ search(java.lang.String)
+comment5.params=str
+comment5.target=java.util.ArrayList\ partialSearch(java.lang.String)
+comment6.params=
+comment6.target=void\ removeEveryOther()
+numComments=7

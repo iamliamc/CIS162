@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=PushCounterPanel2()
+comment0.text=\r\n\ \ Constructor\:\ Sets\ up\ the\ GUI.\r\n
+comment1.params=event
+comment1.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment1.text=\r\n\ \ Updates\ the\ counter\ and\ label\ when\ the\ button\ is\ pushed.\r\n
+numComments=2
