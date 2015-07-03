@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.params=
+comment0.target=CustomerDatabase()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ CustomerDatabase\r\n
+comment1.params=filename
+comment1.target=void\ readCustomerData(java.lang.String)
+comment10.params=keyword
+comment10.target=java.util.ArrayList\ getMailingList(java.lang.String)
+comment11.params=args
+comment11.target=void\ main(java.lang.String[])
+comment2.params=c
+comment2.target=void\ addCustomer(Customer)
+comment3.params=
+comment3.target=int\ countCustomers()
+comment4.params=zip
+comment4.target=int\ countCustomers(int)
+comment5.params=
+comment5.target=int\ countDebtFree()
+comment6.params=
+comment6.target=Customer\ getHighestDebt()
+comment7.params=
+comment7.target=Customer\ getYoungestCardholder()
+comment8.params=card
+comment8.target=java.lang.String\ getCardSummary(java.lang.String)
+comment9.params=low\ high
+comment9.target=java.util.ArrayList\ getMailingList(double,\ double)
+numComments=12

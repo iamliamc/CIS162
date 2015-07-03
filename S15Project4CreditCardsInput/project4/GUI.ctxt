@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.params=arg
+comment0.target=void\ main(java.lang.String[])
+comment1.params=
+comment1.target=GUI()
+comment1.text=\r\n\ \ \ \ Constructor\ -\ instantiates\ and\ displays\ all\ of\ the\ GUI\ commponents\r\n
+comment2.params=
+comment2.target=void\ setupMenus()
+comment2.text=\r\n\ \ \ \ Set\ up\ the\ menu\ items\r\n
+comment3.params=
+comment3.target=void\ setupSelection()
+comment3.text=\r\n\ \ Set\ up\ the\ text\ fields\ \r\n
+comment4.params=
+comment4.target=void\ setupButtons()
+comment4.text=\r\n\ \ Set\ up\ the\ Buttons\ \r\n
+comment5.params=list
+comment5.target=void\ displayCustomers(java.util.ArrayList)
+comment5.text=\r\nThis\ method\ displays\ the\ mailing\ address\ of\ each\ customer\ in\ the\ list\r\n\r\n@param\ ArrayList\ <Customer>\r\n********************************************************************
+comment6.params=
+comment6.target=void\ showSummaries()
+comment6.text=\r\n\ This\ method\ clears\ the\ display\ area\ and\ then\ shows\ the\ summaries\ \r\n\ for\ each\ of\ the\ three\ credit\ cards\:\ Discover,\ MasterCard\ and\ Visa\r\n\r\n********************************************************************
+comment7.params=e
+comment7.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment7.text=\r\nResponds\ to\ menu\ selections\ and\ button\ clicks\r\n\r\n@param\ e\ the\ button\ or\ menu\ item\ that\ was\ selected\r\n********************************************************************
+numComments=8

@@ -28,7 +28,7 @@ public class BorderPanel extends JPanel
 
       add (b1, BorderLayout.NORTH);
       add (b3, BorderLayout.CENTER);
-      add (b5, BorderLayout.SOUTH);
+      add (b5, BorderLayout.EAST);
       add (b4, BorderLayout.EAST);
       add (b2, BorderLayout.WEST);
   
