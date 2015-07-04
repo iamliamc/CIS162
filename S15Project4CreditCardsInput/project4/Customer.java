@@ -183,7 +183,7 @@ public class Customer
 
     public String toString()
     {
-        return "" + first + " " + last + "\n" + address + " " + "\n" + city + ", " + state + " " + zip;
+        return "" + first + " " + last + "\n" + address + " " + "\n" + city + ", " + state + " " + zip + "\n" + "=========================" + "\n";
     }
 
     public static void main(String args[]){

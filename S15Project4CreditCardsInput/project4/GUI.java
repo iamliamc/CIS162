@@ -196,6 +196,7 @@ public class GUI extends JPanel implements ActionListener
         Customer c;
         ArrayList<Customer> x;
         int b = 0;
+        int r = 0;
         // menu item - quit
         if (e.getSource() == quitItem)
         {
@@ -215,7 +216,9 @@ public class GUI extends JPanel implements ActionListener
         if (e.getSource() == countItem){
             results.setText("");
             b = db.countCustomers();
-            results.append(String.valueOf(b));
+            r = db.debtFree();
+            results.append("Number of Customers: " + String.valueOf(b) + "      Debt Free Customers: " + String.valueOf(r));
+            // customers that are debt free
         }
         
         if (e.getSource() == searchYoungest){
@@ -233,13 +236,19 @@ public class GUI extends JPanel implements ActionListener
         if (e.getSource() == searchDebt){
             results.setText("");
             x = db.getMailingList(Double.parseDouble(min.getText()), Double.parseDouble(max.getText()));
-            results.append(x.toString());
+            // results.append(x.toString());
+            for (Customer debt : x){
+                results.append(debt.toString());
+            }
         }
         
         if (e.getSource() == searchCity){
             results.setText("");
             x = db.getMailingList(cityState.getText());
-            results.append(x.toString());
+            // results.append(x.toString());
+            for (Customer city : x){
+                results.append(city.toString());
+            }
         }
         
         // complete this method to handle the rest of the menu items and 

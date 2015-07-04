@@ -68,6 +68,18 @@ public class CustomerDatabase
         return customers.size();
     }
 
+    public int debtFree()
+    {
+        int debtFree = 0;
+        for (Customer cst: customers){
+            if (cst.getBalance() == 0.0){
+                debtFree++;
+            }
+
+        }
+        return debtFree;
+    }
+
     public int countCustomers(int zip)
     {
         int count = 0;
