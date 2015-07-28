@@ -10,6 +10,7 @@ public class Room
     // instance variables - replace the example below with your own
     private String description;
     private Item roomItem;
+    private Item roomItem2;
     private HashMap <String, Room> movements;
     
     /**
@@ -19,6 +20,14 @@ public class Room
     {
         this.description = d;
         this.roomItem = i;
+        movements = new HashMap<String, Room>();
+    }
+    
+    public Room(String d, Item i, Item i2)
+    {
+        this.description = d;
+        this.roomItem = i;
+        this.roomItem2 = i2;
         movements = new HashMap<String, Room>();
     }
     
@@ -44,7 +53,7 @@ public class Room
     
     public boolean hasItem()
     {
-        if (roomItem.getName() != ""){
+        if (roomItem != null){
             return true;
         }
         else {
@@ -79,9 +88,11 @@ public class Room
     {
         Item boar = new Item("Boar", "Cute little boar", 10, true);
         Room quiteMarket = new Room("See the world little man", boar);
+        if(quiteMarket.hasItem()== true){
+            System.out.println("quiteMarket has item");
+        }
         Room well = new Room("Stone hand dug well", null);
         quiteMarket.addNeighbor("east", well);
-        
         System.out.println(quiteMarket.getNeighbor("east").getDescription());
     }
     
