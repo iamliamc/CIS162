@@ -162,6 +162,7 @@ public class Game
 
             if(canEat.isEdible() == true){
                 currentMessage = "Yum that was a tasty" + canEat.getName() + "!";
+                playerItems.remove(itm);
             }
             else if(canEat.isEdible() == false){
                 currentMessage = canEat.getName() + " is not edible.";
@@ -209,18 +210,23 @@ public class Game
     public void leave(String item){
         // finish
         boolean haveItem = false;
+        Item holder = null;
+        // System.out.println(playerItems.size());
         if (currentLocation.hasItem() == true){
             currentMessage = "This room already has an item you can't put one down";
         }
+        else if(playerItems.size() == 0){
+            currentMessage = "You are not holding any items";
+        }
         else {
-            for(Item itm: playerItems){
-                if(itm.getName().equals(item)){
-                    playerItems.remove(itm);
-                    currentLocation.addItem(itm);
-                    currentMessage = itm.getName() + " was dropped from inventory";
+            for(Item i: playerItems){
+                if(i.getName().equals(item)){
+                    holder = i;
                     haveItem = true;
                 }
             }
+            playerItems.remove(holder);
+            currentLocation.addItem(holder);
             if (haveItem == false){
                 currentMessage = "You are not holding that item";
             }
@@ -247,11 +253,13 @@ public class Game
         System.out.println(testGame.currentLocation.getMovements());
         testGame.move("west");
         System.out.println(testGame.currentLocation.getDescription());
+        System.out.println("IN BLACKSMITH HAS ITEM?");
         System.out.println(testGame.currentLocation.hasItem());
         testGame.pickup();
         testGame.inventory();
         System.out.println(testGame.getMessage());
-        //testGame.leave("Scrap Iron");
+        System.out.println(testGame.currentLocation.hasItem());
+        testGame.leave("Scrap Iron");
         System.out.println(testGame.currentLocation.hasItem());
         
     }
