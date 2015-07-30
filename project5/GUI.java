@@ -23,6 +23,8 @@ public class GUI extends JPanel implements ActionListener
     private JButton south;
     private JButton east;
     private JButton west;
+    private JButton northeast;
+    private JButton northwest;
 
     private JButton inspect;
     private JButton help;
@@ -31,6 +33,7 @@ public class GUI extends JPanel implements ActionListener
     private JButton backup;
     private JButton eat;
     private JButton show;
+    private JButton inv;
 
     /** results box */
     private JTextArea results;
@@ -109,34 +112,10 @@ public class GUI extends JPanel implements ActionListener
     }   
     
     /********************************************************
-     *  Set up the text fields 
-     **********************************************************
-    private void setupSelection()
-    {
-        JPanel selectPane = new JPanel();
-
-        // create menu components
-        min = new JTextField(10);
-        max = new JTextField(10);
-        cityState = new JTextField(15);
-
-        //add components to the JPanel
-        selectPane.add (new JLabel ("Min $ "));
-        selectPane.add  (min);
-        selectPane.add (new JLabel ("Max $ "));
-        selectPane.add (max);
-        selectPane.add (new JLabel ("City/ST"));
-        selectPane.add (cityState);
-
-        theGUI.add(BorderLayout.SOUTH, selectPane);
-    }/
-
-    /********************************************************
      *  Set up the Buttons 
      **********************************************************/
     private void setupButtons()
     {
-        // complete this method based on project description
         JPanel actionPanel = new JPanel();
         actionPanel.setLayout(new BoxLayout(actionPanel, BoxLayout.X_AXIS));
 
@@ -147,6 +126,7 @@ public class GUI extends JPanel implements ActionListener
         backup = new JButton ("Backup");
         show = new JButton ("Show");
         eat = new JButton ("Eat");
+        inv = new JButton ("Inventory");
       
         actionPanel.add(new JLabel("Actions"));
         actionPanel.add(inspect);
@@ -156,6 +136,7 @@ public class GUI extends JPanel implements ActionListener
         actionPanel.add(backup);
         actionPanel.add(show);
         actionPanel.add(eat);
+        actionPanel.add(inv);
         
         inspect.addActionListener(this);
         help.addActionListener(this);
@@ -164,6 +145,7 @@ public class GUI extends JPanel implements ActionListener
         backup.addActionListener(this);
         show.addActionListener(this);
         eat.addActionListener(this);
+        inv.addActionListener(this);
         
         theGUI.add(BorderLayout.SOUTH, actionPanel);
         
@@ -190,11 +172,25 @@ public class GUI extends JPanel implements ActionListener
     }
     
     private void gameOver(){
-        
+        if(g.gameOver() == true){
+            inspect.setEnabled(false);
+            help.setEnabled(false);
+            pickup.setEnabled(false);
+            leave.setEnabled(false);
+            backup.setEnabled(false);
+            show.setEnabled(false);
+            inv.setEnabled(false);
+            eat.setEnabled(false);
+            north.setEnabled(false);
+            south.setEnabled(false);
+            east.setEnabled(false);
+            west.setEnabled(false);
+        }        
     }
     
     private void newGame(){
-        
+        g = new Game();
+        results.setText(g.getMessage());
     }
     
     /*********************************************************************
@@ -244,14 +240,41 @@ public class GUI extends JPanel implements ActionListener
         }
         
         if (e.getSource() == newGame){
-            g = new Game();
-            results.setText(g.getMessage());
+                newGame();
         }
         
         if (e.getSource() == backup){
             g.backup();
-            results.setText(g.getMessage());
+            results.append(g.getMessage());
         }
+        
+        if (e.getSource() == show){
+            g.show();
+            results.append(g.getMessage());
+        }
+        
+        if (e.getSource() == inv){
+            g.inventory();
+            results.append(g.getMessage());
+        }
+        
+        if (e.getSource() == inspect){
+            g.inspect();
+            results.append(g.getMessage());
+        }
+        
+        if (e.getSource() == pickup){
+            g.pickup();
+            results.append(g.getMessage());
+        }
+        
+        if (e.getSource() == leave) {
+            String message = "What do you want to leave?";
+            String toLeave = JOptionPane.showInputDialog(null, message);
+            g.leave(toLeave);
+            results.append(g.getMessage());
+        }
+        
     }
 }
 

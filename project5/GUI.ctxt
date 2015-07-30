@@ -9,7 +9,7 @@ comment2.target=void\ setupMenus()
 comment2.text=\r\n\ \ \ \ Set\ up\ the\ menu\ items\r\n
 comment3.params=
 comment3.target=void\ setupButtons()
-comment3.text=\r\n\ \ Set\ up\ the\ text\ fields\ \r\n\r\n\ \ \ \ private\ void\ setupSelection()\r\n\ \ \ \ {\r\n\ \ \ \ \ \ \ \ JPanel\ selectPane\ \=\ new\ JPanel();\r\n\r\n\ \ \ \ \ \ \ \ //\ create\ menu\ components\r\n\ \ \ \ \ \ \ \ min\ \=\ new\ JTextField(10);\r\n\ \ \ \ \ \ \ \ max\ \=\ new\ JTextField(10);\r\n\ \ \ \ \ \ \ \ cityState\ \=\ new\ JTextField(15);\r\n\r\n\ \ \ \ \ \ \ \ //add\ components\ to\ the\ JPanel\r\n\ \ \ \ \ \ \ \ selectPane.add\ (new\ JLabel\ ("Min\ $\ "));\r\n\ \ \ \ \ \ \ \ selectPane.add\ \ (min);\r\n\ \ \ \ \ \ \ \ selectPane.add\ (new\ JLabel\ ("Max\ $\ "));\r\n\ \ \ \ \ \ \ \ selectPane.add\ (max);\r\n\ \ \ \ \ \ \ \ selectPane.add\ (new\ JLabel\ ("City/ST"));\r\n\ \ \ \ \ \ \ \ selectPane.add\ (cityState);\r\n\r\n\ \ \ \ \ \ \ \ theGUI.add(BorderLayout.SOUTH,\ selectPane);\r\n\ \ \ \ }/\r\n\r\n\ \ \ \ /********************************************************\r\n\ \ Set\ up\ the\ Buttons\ \r\n
+comment3.text=\r\n\ \ Set\ up\ the\ Buttons\ \r\n
 comment4.params=
 comment4.target=void\ gameOver()
 comment5.params=

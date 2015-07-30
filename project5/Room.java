@@ -81,7 +81,7 @@ public class Room
     public String getLongDescription()
     {
         String longDescription = "You are in" + description + ". You see " + roomItem.getDescription() + ".";
-        return longDescription;
+        return longDescription + "\n";
     }
     
     public static void main(String [ ] args)
