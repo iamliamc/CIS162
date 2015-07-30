@@ -12,7 +12,7 @@ public class Room
     private Item roomItem;
     private Item roomItem2;
     private HashMap <String, Room> movements;
-    
+
     /**
      * Constructor for objects of class Room
      */
@@ -22,7 +22,7 @@ public class Room
         this.roomItem = i;
         movements = new HashMap<String, Room>();
     }
-    
+
     public Room(String d, Item i, Item i2)
     {
         this.description = d;
@@ -30,27 +30,32 @@ public class Room
         this.roomItem2 = i2;
         movements = new HashMap<String, Room>();
     }
-    
+
     public String getDescription()
     {
         return description;
     }
     
+    public void setDescription(String d)
+    {
+        this.description = d;
+    }
+
     public Item getItem()
     {
         return roomItem;
     }
-    
+
     public HashMap getMovements()
     {
         return movements;
     }
-    
+
     public void addItem(Item i)
     {
         this.roomItem = i;
     }
-    
+
     public boolean hasItem()
     {
         if (roomItem != null){
@@ -60,30 +65,36 @@ public class Room
             return false;
         }
     }
-    
+
     public void addNeighbor(String dir, Room r)
     {
         this.movements.put(dir, r);
     }
-    
+
     public Room getNeighbor(String dir)
     {
         Room neighbor = this.movements.get(dir);
         return neighbor;
     }
-    
+
     public Item removeItem()
     {
         this.roomItem = null;
         return roomItem;
     }
-    
+
     public String getLongDescription()
     {
-        String longDescription = "You are in" + description + ". You see " + roomItem.getDescription() + ".";
-        return longDescription + "\n";
+        if (hasItem()){
+            String longDescription = "You are in" + description + ". You see " + roomItem.getDescription() + ".";
+            return longDescription + "\n";
+        }
+        else {
+            String longDescription = "You are in" + description + ".";
+            return longDescription + "\n";
+        }
     }
-    
+
     public static void main(String [ ] args)
     {
         Item boar = new Item("Boar", "Cute little boar", 10, true);
@@ -95,9 +106,7 @@ public class Room
         quiteMarket.addNeighbor("east", well);
         System.out.println(quiteMarket.getNeighbor("east").getDescription());
     }
-    
-    
-    
+
     
     
 }

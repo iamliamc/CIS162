@@ -15,6 +15,7 @@ public class Game
     private String currentMessage;
     private boolean win;
     private boolean lose;
+    
     //Game locations and items
 
     private Item metalLoop;
@@ -49,6 +50,7 @@ public class Game
         // initialise instance variables
         playerItems = new ArrayList<Item>();
         createRooms();
+        currentLocation = start;
         lastLocation = null;
         win = false;
         lose = false;
@@ -71,7 +73,7 @@ public class Game
         boar = new Item("Small Boar", "Sleeping little boar by the water trough", 10, true);
 
         secondSmith = new Room (" a dark room massive blacksmith turns his head grumbles and charges you with his hammer", null);
-        start = new Room (" a room on a cot wearing shackles and is dizzy. Mud floor and water dripping from a crack in the ceiling. You are shackled to another person and a metal loop in the wall...", metalLoop, null);     
+        start = new Room (" a room on a cot wearing shackles and is dizzy. Mud floor and water dripping from a crack in the ceiling. You are shackled to another person who appears dead", null);     
         quiteMarket = new Room (" a small market with empty stands. About 100 meters long, you can see a small plaza and a church, along with dark smoke pouring from a chimney. Along with a stone well.", bell);
         openHill = new Room (" a ditch on a large hillside leading down to a stream and the edge of a forest. ", smallCart);
         blackSmith = new Room (" the forge room thick hot smoke pours out of a fire as you hear the ringing of a hammer on iron. There is a door slightly ajar. ", scrapIron, horseShoe);
@@ -82,18 +84,15 @@ public class Game
         river = new Room (" a small grove next to a 12 meter wide river flowing briskly south", null);
         ocean = new Room (" a marsh where the river meets endless water to the horizon", null);
 
-        // add neighbors to all rooms
-        start.addNeighbor("north", quiteMarket);
-        start.addNeighbor("west", openHill);
-
         quiteMarket.addNeighbor("north", church);
         quiteMarket.addNeighbor("west", blackSmith);
         quiteMarket.addNeighbor("northeast", well);
-        quiteMarket.addNeighbor("south", start);
+ 
         quiteMarket.addNeighbor("northwest", animalPen);
 
         well.addNeighbor("south", quiteMarket);
         well.addNeighbor("north", church);
+        
         animalPen.addNeighbor("east", quiteMarket);
 
         blackSmith.addNeighbor("east", quiteMarket);
@@ -105,7 +104,7 @@ public class Game
         church.addNeighbor("east", well);
 
         openHill.addNeighbor("west", river);
-        openHill.addNeighbor("east", start);
+
         openHill.addNeighbor("north", blackSmith);
 
         river.addNeighbor("east", openHill);
@@ -117,7 +116,7 @@ public class Game
     public void move(String direction){
         Room nextRoom = currentLocation.getNeighbor(direction);
         if (nextRoom == null){
-            currentMessage = "You can't go in that direction";
+            currentMessage = "You can't go in that direction" + "\n";
         }
         else{
             lastLocation = currentLocation;
@@ -196,7 +195,7 @@ public class Game
             return true;
         }
 
-        else if(lose == false){
+        else if(lose == true){
             currentMessage = "You've lost!" + "\n";
             return true;
         }
@@ -208,17 +207,34 @@ public class Game
 
     public void inspect()
     {
-        if (currentLocation == church){
+        if (currentLocation == start) {
+            start = new Room (" the dirty shack you started in...", metalLoop);
+            start.addNeighbor("north", quiteMarket);
+            start.addNeighbor("west", openHill);
+            currentLocation = start;
+            openHill.addNeighbor("east", start);
+            quiteMarket.addNeighbor("south", start);
+            currentMessage = "You pull on the shackle and hear the dead gents arm crack. The link holding the metal loop on his wrist breaks and falls to the floor" + "\n";
+
+        }
+        
+        else if (currentLocation == church){
             currentMessage = "You approach the church organ and accidentally press a key, the organ bellows a massive low tone. The roof shakes and falls onto you crushing your body" + "\n";
             lose = true;
         }
 
         else if (currentLocation == openHill){
             currentMessage = "You walk up to the cart and bend to check the axels, the small stones under your feet move and the cart shifts down the hill towards the river rolling uncontrollably" + "\n";
-            brokenCart = new Item("Broken Cart", "The cart has shattered into pieces there are numerous usable boards", 12000, false);
-            river = new Room (" a small grove next to a 12 meter wide river flowing briskly south", brokenCart);
-            river.addNeighbor("south", ocean);
+            brokenCart = new Item("Broken Cart", "the cart has shattered into pieces there are numerous usable boards", 12000, false);
+            river.addItem(brokenCart);
+            river.setDescription(" a small grove next to a 12 meter wide river flowing briskly south, the broken cart is by the river bank");
             river.addNeighbor("east", openHill);
+        }
+        
+        else if (currentLocation == river && river.hasItem()){
+            currentMessage = "You grab some vines from a nearby tree and spend an hour cruedly lashing the carts wood into a raft, you can go south on the river if you want" + "\n";
+            river.addNeighbor("south", ocean);
+            
         }
 
         else if (currentLocation == church && searchInventory("Wooden Pale") == woodenPale && searchInventory("Small Boar") == boar){
@@ -313,34 +329,23 @@ public class Game
         Game testGame = new Game();
         testGame.setIntroMessage();
         System.out.println(testGame.getMessage());
-        System.out.println(testGame.currentLocation.getDescription());
-        //System.out.println(testGame.currentLocation.getMovements());
+        testGame.show();
+        System.out.println(testGame.getMessage());
+        System.out.println(testGame.currentLocation.getMovements());
         System.out.println(testGame.currentLocation.hasItem());
         testGame.pickup();
         testGame.inventory();
         testGame.leave("Iron loop");
         System.out.println(testGame.getMessage());
-        testGame.move("north");
-        System.out.println(testGame.currentLocation.getDescription());
-        System.out.println(testGame.currentLocation.getMovements());
         testGame.move("west");
-        System.out.println(testGame.currentLocation.getDescription());
-        System.out.println(testGame.currentLocation.hasItem());
-        testGame.pickup();
-        testGame.inventory();
         System.out.println(testGame.getMessage());
-        System.out.println(testGame.currentLocation.hasItem());
-        testGame.leave("Scrap Iron");
-        System.out.println(testGame.currentLocation.hasItem());
-        testGame.backup();
-        testGame.currentLocation.getDescription();
+        testGame.inspect();
         System.out.println(testGame.getMessage());
-        testGame.move("left");
-        testGame.pickup();
-        testGame.eat("Ducky");
-        System.out.println(testGame.getMessage());
-        testGame.eat("Small Boar");
+        testGame.move("west");
         System.out.println(testGame.getMessage());
 
+        if(testGame.gameOver()){
+            System.out.println(testGame.getMessage());
+        }
     }
 }
