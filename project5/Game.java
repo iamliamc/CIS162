@@ -71,9 +71,9 @@ public class Game
         smallCart = new Item("Small Oxen Cart", "Small four wheeled cart resting at the top of the hill", 12000, false);
         woodenPale = new Item("Wooden Pale", "Simple wooden pale half filled with clean water", 12, false);    
         boar = new Item("Small Boar", "Sleeping little boar by the water trough", 10, true);
-        
+
         //declare various rooms 
-        secondSmith = new Room (" a dark room massive blacksmith turns his head grumbles and charges you with his hammer", null);
+        secondSmith = new Room (" a dark musky room, massive blacksmith turns his head grumbles and charges you with his hammer", null);
         start = new Room (" a room on a cot wearing shackles and is dizzy. Mud floor and water dripping from a crack in the ceiling. You are shackled to another person who appears dead", null);     
         quiteMarket = new Room (" a small market with empty stands. About 100 meters long, you can see a small plaza and a church, along with dark smoke pouring from a chimney. Along with a stone well.", bell);
         openHill = new Room (" a ditch on a large hillside leading down to a stream and the edge of a forest. ", smallCart);
@@ -84,7 +84,7 @@ public class Game
         catacomb = new Room (" a dark musty cellar filled with bones", null);
         river = new Room (" a small grove next to a 12 meter wide river flowing briskly south", null);
         ocean = new Room (" a marsh where the river meets endless water to the horizon", null);
-        
+
         // add neighbors to various rooms, some of this occurs in inspect to make things more interesting 
         quiteMarket.addNeighbor("north", church);
         quiteMarket.addNeighbor("west", blackSmith);
@@ -114,7 +114,7 @@ public class Game
         currentLocation = start;
 
     }
-    
+
     // move between rooms using hashmap, also accomodates the "backup" method by making the lastLocation equal to the currentLocation before updating currentLocation
     public void move(String direction){
         Room nextRoom = currentLocation.getNeighbor(direction);
@@ -144,13 +144,13 @@ public class Game
     {
         currentMessage = "You need to find a way out of this place!" + "\n";
     }
-    
+
     //used to indicate information about current room
     public void show()
     {
         currentMessage = currentLocation.getLongDescription() + "\n";
     }
-    
+
     // used to indicate contents of playerItems with for each loop
     public void inventory()
     {
@@ -193,20 +193,43 @@ public class Game
             win = true;
         }
 
+        if(currentLocation == secondSmith && searchInventory("Scrap Iron") == scrapIron){
+            currentMessage = "You smash the smith in the head with the Scrap Iron and blood gushes from his skull as he hits the ground with a thud" + "\n";
+        }
+
+        if(currentLocation == secondSmith && searchInventory("Scrap Iron") == null){
+            lose = true;
+        }
+
         if(currentLocation == catacomb){
             lose = true;
-            currentMessage = "A phantom appears and kills you.";
         }
 
         if(win == true){
             if (currentLocation == ocean){
                 currentMessage = "You see a ship in the distance and quickly build an enormous bonfire, before night falls a small off-board ship has come and you join the crew --- you've been SAVEDDD!";
             }
+            
+            else if (currentLocation == church && searchInventory("Wooden Pale") == woodenPale && searchInventory("Small Boar") == boar){
+                currentMessage = "I guess the elderly are worth something every once in a while! Thanks for the help old bishop!" + "\n";
+            }
+            
+            else if (currentLocation == church && searchInventory("Wooden Pale") == woodenPale){
+                currentMessage = "What a beautiful mystic paradise enjoy immortality Cato!" + "\n";                
+            }
             return true;
         }
 
         else if(lose == true){
-            currentMessage = "You've lost!" + "\n";
+            if (currentLocation == secondSmith){
+                currentMessage = "The smith sticks a orange hot metal hammer through your chest and you die smelling buring flesh" + "\n";
+            }
+            else if (currentLocation == catacomb){
+                currentMessage = "A phantom appears out of the cold bones screams an utterly magestic melody swirls around the room and eats your face.";                
+            }
+            else{
+                currentMessage = "You've lost!" + "\n";
+            }
             return true;
         }
 
@@ -229,11 +252,6 @@ public class Game
 
         }
 
-        else if (currentLocation == church){
-            currentMessage = "You approach the church organ and accidentally press a key, the organ bellows a massive low tone. The roof shakes and falls onto you crushing your body" + "\n";
-            lose = true;
-        }
-
         else if (currentLocation == openHill){
             currentMessage = "You walk up to the cart and bend to check the axels, the small stones under your feet move and the cart shifts down the hill towards the river rolling uncontrollably" + "\n";
             brokenCart = new Item("Broken Cart", "the cart has shattered into pieces there are numerous usable boards", 12000, false);
@@ -249,12 +267,12 @@ public class Game
         }
 
         else if (currentLocation == church && searchInventory("Wooden Pale") == woodenPale && searchInventory("Small Boar") == boar){
-            currentMessage = "You approach the boar alter and out of your inventory hops the boar, it lands in the basin and knocks the water out of your wooden pale - PIGGY BATH!!! The squeaking boar wakes the old bishop who shows you out of the abandoned town.";
-            playerItems.remove(boar);
+            currentMessage = "You approach the boar alter and out of your inventory hops the boar, it lands in the basin and knocks the water out of your wooden pale - PIGGY BATH!!! The squeaking boar wakes the old bishop who shows you out of the near desolate town." + "\n";
             win = true;
         }
 
-        else if(currentLocation == church && searchInventory("Small boar") == boar){
+        else if(currentLocation == church && searchInventory("Small Boar") == boar){
+            currentMessage = "A massive stone moves creating a large opening heading north and under the graveyard" + "/n";
             catacomb = new Room (" a dark musty cellar filled with bones", null);
             catacomb.addNeighbor("south", church);
             church.addNeighbor("north", catacomb);
@@ -262,8 +280,13 @@ public class Game
         }
 
         else if (currentLocation == church && searchInventory("Wooden Pale") == woodenPale){
-            currentMessage = "You approach the boar alter and look at its basin, there are human bones next to the alter, but also animal bones, you pour water into the basin, a massive portal opens beneath your feet and you fall into paradise";
+            currentMessage = "You approach the boar alter and look at its basin, there are human bones next to the alter, but also animal bones, you pour water into the basin, a massive portal opens beneath your feet and you fall into paradise" + "\n";
             win = true;
+        }
+
+        else if (currentLocation == church){
+            currentMessage = "You approach the church organ and accidentally press a key, the organ bellows a massive low tone. The roof shakes and falls onto you crushing your body" + "\n";
+            lose = true;
         }
 
         else {

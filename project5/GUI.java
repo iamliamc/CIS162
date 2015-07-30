@@ -165,6 +165,9 @@ public class GUI extends JPanel implements ActionListener
         east = new JButton ("East");
         west = new JButton ("West");
         
+        northwest = new JButton ("Northwest");
+        northeast = new JButton ("Northeast");
+        
         north.setBackground(Color.blue);
         east.setBackground(Color.red);
         west.setBackground(Color.green);
@@ -175,11 +178,15 @@ public class GUI extends JPanel implements ActionListener
         eastPanel.add(south);
         eastPanel.add(west);
         eastPanel.add(east);
+        eastPanel.add(northeast);
+        eastPanel.add(northwest);
 
         north.addActionListener(this);
         south.addActionListener(this);
         east.addActionListener(this);
         west.addActionListener(this);
+        northeast.addActionListener(this);
+        northwest.addActionListener(this);
 
         theGUI.add(BorderLayout.EAST, eastPanel);
     }
@@ -199,6 +206,8 @@ public class GUI extends JPanel implements ActionListener
             south.setEnabled(false);
             east.setEnabled(false);
             west.setEnabled(false);
+            northwest.setEnabled(false);
+            northeast.setEnabled(false);
         }        
     }
 
@@ -207,6 +216,20 @@ public class GUI extends JPanel implements ActionListener
         g = new Game();
         g.setIntroMessage();
         results.setText(g.getMessage());
+        inspect.setEnabled(true);
+        help.setEnabled(true);
+        pickup.setEnabled(true);
+        leave.setEnabled(true);
+        backup.setEnabled(true);
+        show.setEnabled(true);
+        inv.setEnabled(true);
+        eat.setEnabled(true);
+        north.setEnabled(true);
+        south.setEnabled(true);
+        east.setEnabled(true);
+        west.setEnabled(true);
+        northwest.setEnabled(true);
+        northeast.setEnabled(true);
     }
 
     /*********************************************************************
@@ -256,6 +279,18 @@ public class GUI extends JPanel implements ActionListener
         if (e.getSource() == west){
             g.move("west");
             gameOver();            
+            results.append(g.getMessage());
+        }
+        
+        if (e.getSource() == northwest){
+            g.move("northwest");
+            gameOver();
+            results.append(g.getMessage());
+        }
+        
+        if (e.getSource() == northeast){
+            g.move("northeast");
+            gameOver();
             results.append(g.getMessage());
         }
 
