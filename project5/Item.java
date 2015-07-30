@@ -1,7 +1,7 @@
 
 /**
  * Write a description of class Item here.
- * Item class with 4 methods. 
+ * Item class with 4 methods. Has some simple attributes 
  * 
  * Liam Considine
  * 7.14.2015
@@ -29,7 +29,6 @@ public class Item
     // Set methods
     public void setName(String name)
     {
-        // put your code here
         this.name = name;
     }
     

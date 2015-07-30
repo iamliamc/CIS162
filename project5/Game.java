@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
- * Write a description of class Game here.
+ * Write a description of class Game here. The game class is where features of the game change, it describes the items, things that inspecting rooms does to items, and winning/losing conditions.
  * 
  * Liam Considine
  * 7.21.15
@@ -15,7 +15,7 @@ public class Game
     private String currentMessage;
     private boolean win;
     private boolean lose;
-    
+
     //Game locations and items
 
     private Item metalLoop;
@@ -71,7 +71,8 @@ public class Game
         smallCart = new Item("Small Oxen Cart", "Small four wheeled cart resting at the top of the hill", 12000, false);
         woodenPale = new Item("Wooden Pale", "Simple wooden pale half filled with clean water", 12, false);    
         boar = new Item("Small Boar", "Sleeping little boar by the water trough", 10, true);
-
+        
+        //declare various rooms 
         secondSmith = new Room (" a dark room massive blacksmith turns his head grumbles and charges you with his hammer", null);
         start = new Room (" a room on a cot wearing shackles and is dizzy. Mud floor and water dripping from a crack in the ceiling. You are shackled to another person who appears dead", null);     
         quiteMarket = new Room (" a small market with empty stands. About 100 meters long, you can see a small plaza and a church, along with dark smoke pouring from a chimney. Along with a stone well.", bell);
@@ -83,16 +84,17 @@ public class Game
         catacomb = new Room (" a dark musty cellar filled with bones", null);
         river = new Room (" a small grove next to a 12 meter wide river flowing briskly south", null);
         ocean = new Room (" a marsh where the river meets endless water to the horizon", null);
-
+        
+        // add neighbors to various rooms, some of this occurs in inspect to make things more interesting 
         quiteMarket.addNeighbor("north", church);
         quiteMarket.addNeighbor("west", blackSmith);
         quiteMarket.addNeighbor("northeast", well);
- 
+
         quiteMarket.addNeighbor("northwest", animalPen);
 
         well.addNeighbor("south", quiteMarket);
         well.addNeighbor("north", church);
-        
+
         animalPen.addNeighbor("east", quiteMarket);
 
         blackSmith.addNeighbor("east", quiteMarket);
@@ -112,7 +114,8 @@ public class Game
         currentLocation = start;
 
     }
-
+    
+    // move between rooms using hashmap, also accomodates the "backup" method by making the lastLocation equal to the currentLocation before updating currentLocation
     public void move(String direction){
         Room nextRoom = currentLocation.getNeighbor(direction);
         if (nextRoom == null){
@@ -130,21 +133,25 @@ public class Game
         currentMessage = "Welcome to Mystery Text Based Adventure." + "\n" + "You control Cato, you can move through the world, collect items and performing actions." + "\n" + "Use your imagination, explore the world and do different things – find the purpose of life!" + "\n";
     }
 
+    // method used by the GUI to add messages to the results pane
     public String getMessage()
     {
         return currentMessage;
     }
 
+    // could have added more help messages based on locations etc, but I think there is enough detail in location descriptions and inspect messages
     public void help()
     {
         currentMessage = "You need to find a way out of this place!" + "\n";
     }
-
+    
+    //used to indicate information about current room
     public void show()
     {
         currentMessage = currentLocation.getLongDescription() + "\n";
     }
-
+    
+    // used to indicate contents of playerItems with for each loop
     public void inventory()
     {
         currentMessage = "";
@@ -154,6 +161,7 @@ public class Game
         System.out.println(currentMessage);
     }
 
+    // searches for an item with for each loop, replaces the holder with contents of said item, eats the item updates message removes from inventory
     public void eat (String item)
     {
         Item canEat = null;
@@ -178,11 +186,11 @@ public class Game
 
     }
 
+    // used by the GUI helper gameOver() method to see what the status of play is
     public boolean gameOver()
     {
         if(currentLocation == ocean){
             win = true;
-            currentMessage = "You see a ship in the distance and quickly build an enormous bonfire, before night falls a small off-board ship has come and you join the crew";
         }
 
         if(currentLocation == catacomb){
@@ -191,7 +199,9 @@ public class Game
         }
 
         if(win == true){
-            currentMessage = "You've won!" + "\n";
+            if (currentLocation == ocean){
+                currentMessage = "You see a ship in the distance and quickly build an enormous bonfire, before night falls a small off-board ship has come and you join the crew --- you've been SAVEDDD!";
+            }
             return true;
         }
 
@@ -205,6 +215,7 @@ public class Game
         }     
     }
 
+    // one of my custom methods, just a way to make the game more intereseting and for it to be more of a puzzle, updates locations and items according to preferences (and outline)
     public void inspect()
     {
         if (currentLocation == start) {
@@ -217,7 +228,7 @@ public class Game
             currentMessage = "You pull on the shackle and hear the dead gents arm crack. The link holding the metal loop on his wrist breaks and falls to the floor" + "\n";
 
         }
-        
+
         else if (currentLocation == church){
             currentMessage = "You approach the church organ and accidentally press a key, the organ bellows a massive low tone. The roof shakes and falls onto you crushing your body" + "\n";
             lose = true;
@@ -230,11 +241,11 @@ public class Game
             river.setDescription(" a small grove next to a 12 meter wide river flowing briskly south, the broken cart is by the river bank");
             river.addNeighbor("east", openHill);
         }
-        
+
         else if (currentLocation == river && river.hasItem()){
             currentMessage = "You grab some vines from a nearby tree and spend an hour cruedly lashing the carts wood into a raft, you can go south on the river if you want" + "\n";
             river.addNeighbor("south", ocean);
-            
+
         }
 
         else if (currentLocation == church && searchInventory("Wooden Pale") == woodenPale && searchInventory("Small Boar") == boar){
@@ -260,6 +271,7 @@ public class Game
         }
     }
 
+    // adds an Item object to playerItems and removes it from current room using arrayList
     public void pickup()
     {
         if(currentLocation.hasItem() == false){
@@ -276,6 +288,7 @@ public class Game
 
     }
 
+    // searches through the playerItems arrayList and returns item or null depending on if the item is found
     private Item searchInventory (String name)
     {
         Item sub = null;
@@ -287,6 +300,7 @@ public class Game
         return sub;
     }
 
+    //removes item from playerItems based on input that matches to an items "name" attribute
     public void leave(String item){
         boolean haveItem = false;
         Item holder = null;
@@ -313,6 +327,7 @@ public class Game
 
     }
 
+    // leverages the lastLocation instance variable to allow the player to back up one move
     public void backup()
     {
         if(lastLocation == null){
@@ -324,17 +339,21 @@ public class Game
         }
     }
 
-    //Test out the Game class
+    //Test out the Game class and show a winning configuration
     public static void main (String args[]){
         Game testGame = new Game();
         testGame.setIntroMessage();
         System.out.println(testGame.getMessage());
         testGame.show();
         System.out.println(testGame.getMessage());
-        System.out.println(testGame.currentLocation.getMovements());
+        testGame.inspect();
         System.out.println(testGame.currentLocation.hasItem());
         testGame.pickup();
+        System.out.println(testGame.getMessage());        
         testGame.inventory();
+        System.out.println(testGame.getMessage());        
+        testGame.eat("Iron loop");
+        System.out.println(testGame.getMessage());
         testGame.leave("Iron loop");
         System.out.println(testGame.getMessage());
         testGame.move("west");
@@ -342,6 +361,9 @@ public class Game
         testGame.inspect();
         System.out.println(testGame.getMessage());
         testGame.move("west");
+        testGame.inspect();
+        System.out.println(testGame.getMessage());
+        testGame.move("south");
         System.out.println(testGame.getMessage());
 
         if(testGame.gameOver()){

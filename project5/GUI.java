@@ -3,6 +3,9 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
 import javax.swing.text.DefaultCaret;
+import javax.swing.JApplet;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 /***********************************************************************
  * GUI front end for a Credit Card database 
@@ -44,8 +47,7 @@ public class GUI extends JPanel implements ActionListener
     private JMenu fileMenu;
     private JMenuItem quitItem;
     private JMenuItem newGame; 
-    private JMenuItem countItem;
-    private JMenuItem summaryItem;
+
 
     public static void main(String arg[]){
 
@@ -83,8 +85,11 @@ public class GUI extends JPanel implements ActionListener
         // set up buttons
         setupButtons ();
         theGUI.pack();
-        System.out.println(g.getMessage());
+        
+        //configure beginning of game messages
         results.setText(g.getMessage());
+        g.show();
+        results.append(g.getMessage());
 
     }
 
@@ -112,7 +117,7 @@ public class GUI extends JPanel implements ActionListener
     }   
 
     /********************************************************
-     *  Set up the Buttons 
+     *  Set up the Buttons declare buttons, add them to the different panels, add panels to layouts add buttons to action listener
      **********************************************************/
     private void setupButtons()
     {
@@ -127,7 +132,10 @@ public class GUI extends JPanel implements ActionListener
         show = new JButton ("Show");
         eat = new JButton ("Eat");
         inv = new JButton ("Inventory");
-
+        
+        Border thickBorder = new LineBorder(Color.pink, 4);
+        inspect.setBorder(thickBorder);
+        
         actionPanel.add(new JLabel("Actions"));
         actionPanel.add(inspect);
         actionPanel.add(help);
@@ -156,6 +164,11 @@ public class GUI extends JPanel implements ActionListener
         south = new JButton ("South");
         east = new JButton ("East");
         west = new JButton ("West");
+        
+        north.setBackground(Color.blue);
+        east.setBackground(Color.red);
+        west.setBackground(Color.green);
+        south.setBackground(Color.orange);
 
         eastPanel.add(new JLabel("Directions"));
         eastPanel.add(north);
@@ -171,6 +184,7 @@ public class GUI extends JPanel implements ActionListener
         theGUI.add(BorderLayout.EAST, eastPanel);
     }
 
+    //helper method used at each movement action to indicate if the game is complete
     private void gameOver(){
         if(g.gameOver() == true){
             inspect.setEnabled(false);
@@ -188,6 +202,7 @@ public class GUI extends JPanel implements ActionListener
         }        
     }
 
+    //method used by the new button in the menu to restart the game
     private void newGame(){
         g = new Game();
         g.setIntroMessage();
@@ -222,26 +237,26 @@ public class GUI extends JPanel implements ActionListener
 
         if (e.getSource() == north){
             g.move("north");
-            results.append(g.getMessage());
             gameOver();
+            results.append(g.getMessage());
         }
 
         if (e.getSource() == south){
             g.move("south");
-            results.append(g.getMessage());
             gameOver();    
+           results.append(g.getMessage());
         }
 
         if (e.getSource() == east){
             g.move("east");
-            results.append(g.getMessage());
             gameOver();
+            results.append(g.getMessage());            
         }
 
         if (e.getSource() == west){
             g.move("west");
+            gameOver();            
             results.append(g.getMessage());
-            gameOver();
         }
 
         if (e.getSource() == newGame){

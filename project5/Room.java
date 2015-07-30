@@ -22,7 +22,8 @@ public class Room
         this.roomItem = i;
         movements = new HashMap<String, Room>();
     }
-
+    
+    //overload constructor not ended up being used as it would complicate things too much
     public Room(String d, Item i, Item i2)
     {
         this.description = d;
@@ -31,6 +32,7 @@ public class Room
         movements = new HashMap<String, Room>();
     }
 
+    // get & set methods
     public String getDescription()
     {
         return description;
@@ -56,6 +58,7 @@ public class Room
         this.roomItem = i;
     }
 
+    // simple check to see if a room has an item
     public boolean hasItem()
     {
         if (roomItem != null){
@@ -66,6 +69,7 @@ public class Room
         }
     }
 
+    //update hashmap with neighbouring room object
     public void addNeighbor(String dir, Room r)
     {
         this.movements.put(dir, r);
@@ -83,6 +87,7 @@ public class Room
         return roomItem;
     }
 
+    //shows a rooms description was getting nullpointers so I gave it a branch depending on whether the room has an item
     public String getLongDescription()
     {
         if (hasItem()){
@@ -95,6 +100,7 @@ public class Room
         }
     }
 
+    //test room methods
     public static void main(String [ ] args)
     {
         Item boar = new Item("Boar", "Cute little boar", 10, true);
